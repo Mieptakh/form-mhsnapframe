@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Upload Frame - MHSnapFrame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="icon/favicon.ico">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 120px;
+            height: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #0078D7;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .description {
+            background: #eaf4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #004f96;
+            border-left: 5px solid #0078D7;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"], textarea, input[type="date"] {
+            font-family: 'Poppins', sans-serif;
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            color: #333;
+        }
+        input[type="date"] {
+            width: calc(50% - 5px);
+            background-color: #fff;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0078D7;
+            box-shadow: 0 0 5px rgba(0, 120, 215, 0.3);
+        }
+        textarea {
+            resize: none;
+        }
+        button {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 14px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005BB5;
+        }
+        .note {
+            font-size: 14px;
+            color: #555;
+        }
+        .warning {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .checkbox-container input[type="checkbox"] {
+            margin-top: 5px;
+        }
+        .checkbox-container a {
+            color: #0078D7;
+            text-decoration: none;
+        }
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
+        .live-preview {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .live-preview code {
+            color: #0078D7;
+            background-color: #f0f7ff;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .custom-file-input {
+            display: none;
+        }
+        .custom-file-label {
+            display: inline-block;
+            background-color: #0078D7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 8px;
+        }
+        .custom-file-label:hover {
+            background-color: #005BB5;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        .file-name {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            input[type="date"] {
+                width: 100%;
+            }
+            button {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo/logo.png" alt="Logo">
+        </div>
+        <h1>Upload Frame - MHSnapFrame</h1>
+        <div class="description">
+            Guna menjaga performa MHSnapFrame terdapat 3 server yang digunakan untuk meng-hosting website ini, yaitu: 
+            <ul>
+                <li><strong>Utama:</strong> mhsnapframe.rf.gd</li>
+                <li><strong>Cadangan:</strong> srv1.mhsnapframe.rf.gd</li>
+                <li><strong>Cadangan 2:</strong> srv2-mhsnapframe.rf.gd</li>
+            </ul>
+            Hal ini dilakukan karena kami menggunakan hosting gratis dari InfinityFree dan untuk mencegah server overload. Penempatan frame Anda akan diprioritaskan berdasarkan urutan pengiriman.
+        </div>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="organization">Nama Organisasi/Lembaga:</label>
+            <input type="text" id="organization" name="organization" placeholder="Nama organisasi Anda" required>
+
+            <label for="date-range">Tanggal Mulai dan Akhir Kegiatan:</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="date" id="start-date" name="start_date" required>
+                <input type="date" id="end-date" name="end_date" required>
+            </div>
+
+            <label for="frame-upload" class="custom-file-label">Upload Frame Foto (Max 10MB):</label>
+            <input type="file" id="frame-upload" name="frame_file" accept=".png, .jpg, .jpeg" class="custom-file-input" required>
+            <p id="frame-upload-name" class="file-name">Tidak ada file yang dipilih</p>
+
+            <label for="path">Nama Path:</label>
+            <input type="text" id="path" name="path" placeholder="contoh: nama-event-kamu" required oninput="updateLivePreview()">
+            <p class="live-preview">Link akan menjadi: <code id="preview-url">https://mhsnapframe.rf.gd/</code></p>
+
+            <label for="instagram-proof" class="custom-file-label">Bukti Follow IG (@mh.teams):</label>
+            <input type="file" id="instagram-proof" name="ig_follow_proof" accept=".png, .jpg, .jpeg" class="custom-file-input">
+            <p id="instagram-proof-name" class="file-name">Tidak ada file yang dipilih</p>
+
+            <label for="caption">Template Caption untuk Pengunggah:</label>
+            <textarea id="caption" name="caption_template" rows="4" placeholder="Tuliskan template caption di sini..."></textarea>
+
+            <p class="warning">
+                Pastikan untuk mengirim form ini minimal H-7 sebelum kegiatan. Hubungi WhatsApp <a href="https://wa.me/6285183241229" target="_blank">0851-8324-1229</a> untuk bantuan.
+            </p>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="agreement" name="agreement" required>
+                <label for="agreement">
+                    Saya menyetujui <a href="https://mhsnapframe.rf.gd/kebijakan-privasi" target="_blank">Kebijakan Privasi</a> dan <a href="https://mhsnapframe.rf.gd/ketentuan-layanan" target="_blank">Ketentuan Layanan</a>.
+                </label>
+            </div>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+
+    <script>
+        function updateLivePreview() {
+            const pathInput = document.getElementById('path').value;
+            const previewUrl = document.getElementById('preview-url');
+            if (pathInput.trim()) {
+                previewUrl.textContent = https://mhsnapframe.rf.gd/${pathInput};
+            } else {
+                previewUrl.textContent = "https://mhsnapframe.rf.gd/";
+            }
+        }
+
+        document.getElementById('frame-upload').addEventListener('change', function() {
+            const file = this.files[0];
+            const fileName = file ? file.name : 'Tidak ada file yang dipilih';
+            const fileSize = file ? file.size : 0;
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+
+            if (file && fileExtension !== 'png') {
+                alert('Hanya file .png yang diperbolehkan.');
+                this.value = '';
+                document.getElementById('frame-upload-name').textContent = 'Tidak ada file yang dipilih';
+                return;
+            }
+
+            if (file && fileSize > 10 * 1024 * 1024) {
+                alert('Ukuran file tidak boleh lebih dari 10MB.');
+                this.value = '';
+                document.getElementById('frame-upload-name').textContent = 'Tidak ada file yang dipilih';
+                return;
+            }
+
+            document.getElementById('frame-upload-name').textContent = fileName;
+        });
+
+        document.getElementById('instagram-proof').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'Tidak ada file yang dipilih';
+            document.getElementById('instagram-proof-name').textContent = fileName;
+        });
+    </script>
+</body>
+</html>
